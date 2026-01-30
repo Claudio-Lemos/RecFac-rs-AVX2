@@ -1,0 +1,10 @@
+[build]
+# x86-64-v3 ativa AVX, AVX2, BMI1, BMI2, FMA, LZCNT, MOVBE, XSAVE
+rustflags = [
+    "-C", "target-cpu=x86-64-v3",
+    "-C", "link-arg=-Wl,-z,pack-relative-relocs",
+    "-C", "target-feature=+avx2,+fma"
+]
+
+[target.'cfg(target_os = "linux")']
+rustflags = ["-C", "link-arg=-Wl,-O1", "-C", "link-arg=-Wl,--as-needed"]
